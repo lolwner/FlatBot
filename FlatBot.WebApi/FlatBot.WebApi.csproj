@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FlatBot.Infrastructure\FlatBot.Infrastructure.csproj" />
+    <ProjectReference Include="..\FlatBot.Persistance\FlatBot.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

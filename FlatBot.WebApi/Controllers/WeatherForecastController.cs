@@ -1,3 +1,4 @@
+using FlatBot.Application.Services;
 using FlatBot.Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,27 +15,22 @@ namespace FlatBot.WebApi.Controllers
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IOLXService _iOLXService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IOLXService iOLXService)
         {
             _logger = logger;
+            _iOLXService = iOLXService;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public async Task<IEnumerable<WeatherForecast>> GetAsync()
+        public async Task GetAsync()
         {
-            //await TestLogic.testAsync();
+            await _iOLXService.TestFunctionality();
 
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
         }
     }
 }

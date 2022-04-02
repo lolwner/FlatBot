@@ -1,8 +1,14 @@
-using Microsoft.AspNetCore.Authentication;
+using FlatBot.Application;
+using FlatBot.Infrastructure;
+using FlatBot.Persistance;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices();
+builder.Services.AddPersistenceServices(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -20,6 +26,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    //app.UseSwaggerUI(c =>
+    //        {
+    //            c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Supplement V1");
+    //        });
+}
+else
+{
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();

@@ -16,13 +16,13 @@ services:
     build: .
 
     environment:
-      ASPNETCORE_URLS: "https://+:443;http://+:80"
+      ASPNETCORE_URLS: https://+:443;http://+:80
       ASPNETCORE_HTTPS_PORT: 8081
       ASPNETCORE_ENVIRONMENT: "Docker"
     ports:
-      - "8080:80"
+      - "80"
       # - "5001:80"
-      - "8081:443"
+      - "443"
 
     depends_on:
       - mongo

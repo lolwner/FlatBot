@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.4'
 
 services:
 
@@ -12,18 +12,19 @@ services:
     ports:
       - "27017:27017"
 
-  web:
-    build: .
-
+  flatbot.webapi:  
+    image: ${DOCKER_REGISTRY-}flatbotwebapi
+    build:
+      context: .
+      dockerfile: FlatBot.WebApi/Dockerfile
     environment:
       ASPNETCORE_URLS: https://+:443;http://+:80
       ASPNETCORE_HTTPS_PORT: 8081
-      ASPNETCORE_ENVIRONMENT: "Docker"
+      ASPNETCORE_ENVIRONMENT: "Development"
     ports:
       - "80"
       # - "5001:80"
       - "443"
-
     depends_on:
       - mongo
     volumes:

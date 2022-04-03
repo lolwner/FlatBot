@@ -11,32 +11,49 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlatBot.Infrastructure", "F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlatBot.WebApi", "FlatBot.WebApi\FlatBot.WebApi.csproj", "{17978819-460D-4DD7-9C2A-4FD3EC2D93FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatBot.Persistance", "FlatBot.Persistance\FlatBot.Persistance.csproj", "{87B6201B-B948-4193-A447-E158BF9D7BD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlatBot.Persistance", "FlatBot.Persistance\FlatBot.Persistance.csproj", "{87B6201B-B948-4193-A447-E158BF9D7BD8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{647E8BE2-FB5A-48B9-8EA9-872A3C465FBB}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Docker|Any CPU = Docker|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{07AEAD15-5296-4181-8F5A-D53D2D10AE34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{07AEAD15-5296-4181-8F5A-D53D2D10AE34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07AEAD15-5296-4181-8F5A-D53D2D10AE34}.Docker|Any CPU.ActiveCfg = Docker|Any CPU
+		{07AEAD15-5296-4181-8F5A-D53D2D10AE34}.Docker|Any CPU.Build.0 = Docker|Any CPU
 		{07AEAD15-5296-4181-8F5A-D53D2D10AE34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07AEAD15-5296-4181-8F5A-D53D2D10AE34}.Release|Any CPU.Build.0 = Release|Any CPU
 		{67CE0278-832C-472B-B452-5655602E48BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{67CE0278-832C-472B-B452-5655602E48BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67CE0278-832C-472B-B452-5655602E48BF}.Docker|Any CPU.ActiveCfg = Docker|Any CPU
+		{67CE0278-832C-472B-B452-5655602E48BF}.Docker|Any CPU.Build.0 = Docker|Any CPU
 		{67CE0278-832C-472B-B452-5655602E48BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67CE0278-832C-472B-B452-5655602E48BF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5DD67D39-BF55-4044-AC42-0B18AA273902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5DD67D39-BF55-4044-AC42-0B18AA273902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DD67D39-BF55-4044-AC42-0B18AA273902}.Docker|Any CPU.ActiveCfg = Docker|Any CPU
+		{5DD67D39-BF55-4044-AC42-0B18AA273902}.Docker|Any CPU.Build.0 = Docker|Any CPU
 		{5DD67D39-BF55-4044-AC42-0B18AA273902}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DD67D39-BF55-4044-AC42-0B18AA273902}.Release|Any CPU.Build.0 = Release|Any CPU
 		{17978819-460D-4DD7-9C2A-4FD3EC2D93FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17978819-460D-4DD7-9C2A-4FD3EC2D93FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17978819-460D-4DD7-9C2A-4FD3EC2D93FD}.Docker|Any CPU.ActiveCfg = Docker|Any CPU
+		{17978819-460D-4DD7-9C2A-4FD3EC2D93FD}.Docker|Any CPU.Build.0 = Docker|Any CPU
 		{17978819-460D-4DD7-9C2A-4FD3EC2D93FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17978819-460D-4DD7-9C2A-4FD3EC2D93FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{87B6201B-B948-4193-A447-E158BF9D7BD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{87B6201B-B948-4193-A447-E158BF9D7BD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B6201B-B948-4193-A447-E158BF9D7BD8}.Docker|Any CPU.ActiveCfg = Docker|Any CPU
+		{87B6201B-B948-4193-A447-E158BF9D7BD8}.Docker|Any CPU.Build.0 = Docker|Any CPU
 		{87B6201B-B948-4193-A447-E158BF9D7BD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87B6201B-B948-4193-A447-E158BF9D7BD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

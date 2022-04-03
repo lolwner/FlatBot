@@ -13,14 +13,23 @@ services:
       - "27017:27017"
 
   web:
-        build: .
-        ports:
-            - "8000:80"
-            - "44348:443"
-        depends_on:
-            - mongo
-        volumes:
-            - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
-            - ${HOME}/.aspnet/https:/root/.aspnet/https/
-        links:
-          - mongo
+    build: .
+
+    environment:
+      ASPNETCORE_URLS: "https://+:443;http://+:80"
+      ASPNETCORE_HTTPS_PORT: 8081
+      ASPNETCORE_ENVIRONMENT: "Docker"
+    ports:
+      - "8080:80"
+      # - "5001:80"
+      - "8081:443"
+
+    depends_on:
+      - mongo
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/
+      # - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+      # - ${HOME}/.aspnet/https:/root/.aspnet/https/
+    links:
+      - mongo

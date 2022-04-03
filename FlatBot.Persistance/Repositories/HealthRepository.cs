@@ -20,9 +20,16 @@ namespace FlatBot.Persistance.Repositories
 
         public async Task<bool> CheckHealthAsync()
         {
-            var pingResult = await _database.RunCommandAsync((Command<BsonDocument>)"{ping:1}");
-            
-            return pingResult.Names.Contains("ok");
+            try
+            {
+                var pingResult = await _database.RunCommandAsync((Command<BsonDocument>)"{ping:1}");
+
+                return pingResult.Names.Contains("ok");
+            }
+            catch (TimeoutException ex)
+            {
+                return false;
+            }
         }
     }
 }

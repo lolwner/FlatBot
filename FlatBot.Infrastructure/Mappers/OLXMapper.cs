@@ -1,4 +1,5 @@
 ﻿using FlatBot.Application.Mappers;
+using FlatBot.Domain.Constants;
 using FlatBot.Domain.Entities;
 using System.Text.RegularExpressions;
 
@@ -15,9 +16,9 @@ namespace FlatBot.Infrastructure.Mappers
             foreach (var rawOffer in rawOffers)
             {
                 OlxOfferEntity olxOfferEntity = new OlxOfferEntity();
-                if (rawOffer.Date.Contains("Сьогодні"))
+                if (rawOffer.Date.Contains(ContentConstants.OLXTodayString))
                 {
-                    var stringTime = rawOffer.Date.Split("Сьогодні", StringSplitOptions.TrimEntries).Last();
+                    var stringTime = rawOffer.Date.Split(ContentConstants.OLXTodayString, StringSplitOptions.TrimEntries).Last();
                     var hourSuccess = Int32.TryParse(stringTime.Split(":").First(), out int hour);
                     var minuteSuccess = Int32.TryParse(stringTime.Split(":").Last(), out int minute);
 

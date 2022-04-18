@@ -4,6 +4,6 @@ namespace FlatBot.Application.Scrapers
 {
     public interface IOLXScraper
     {
-        Task<List<RawOlxOffer>?> ScrapeOLX();
+        Task<List<RawOlxOffer>?> ScrapeOLXAsync();
     }
 }

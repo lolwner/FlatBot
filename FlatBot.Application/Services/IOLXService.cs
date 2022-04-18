@@ -2,6 +2,6 @@
 {
     public interface IOLXService
     {
-        Task TestFunctionality();
+        Task GetOLXData();
     }
 }

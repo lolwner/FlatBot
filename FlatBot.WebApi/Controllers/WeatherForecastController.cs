@@ -29,7 +29,7 @@ namespace FlatBot.WebApi.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public async Task GetAsync()
         {
-            await _iOLXService.TestFunctionality();
+            await _iOLXService.GetOLXData();
 
         }
     }

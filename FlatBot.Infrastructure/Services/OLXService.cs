@@ -2,6 +2,7 @@
 using FlatBot.Application.Persistance;
 using FlatBot.Application.Scrapers;
 using FlatBot.Application.Services;
+using FlatBot.Domain.Constants;
 
 namespace FlatBot.Infrastructure.Services
 {
@@ -11,7 +12,6 @@ namespace FlatBot.Infrastructure.Services
         private readonly IOLXScraper _oLXScraper;
         private readonly IOLXMapper _oLXMapper;
 
-
         public OLXService(IOlxRepository olxRepository, IOLXScraper oLXScraper, IOLXMapper oLXMapper)
         {
             _olxRepository = olxRepository;
@@ -19,18 +19,16 @@ namespace FlatBot.Infrastructure.Services
             _oLXMapper = oLXMapper;
         }
 
-        public async Task TestFunctionality()
+        public async Task GetOLXData()
         {
-            var data = await _oLXScraper.ScrapeOLX();
-            var todayOffersList = data?.Where(x => x.Date.Contains("Сьогодні")).ToList();
+            var data = await _oLXScraper.ScrapeOLXAsync();
+            var todayOffersList = data?.Where(x => x.Date.Contains(ContentConstants.OLXTodayString)).ToList();
 
-            if (todayOffersList is null)
+            if (todayOffersList is not null)
             {
-                return;
+                var offers = _oLXMapper.Map(todayOffersList);
+                await _olxRepository.CreateAsync(offers);
             }
-
-            var offers = _oLXMapper.Map(todayOffersList);
-            await _olxRepository.CreateAsync(offers);
         }
     }
 }

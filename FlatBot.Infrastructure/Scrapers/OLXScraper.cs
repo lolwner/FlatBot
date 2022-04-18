@@ -6,7 +6,7 @@ namespace FlatBot.Infrastructure.Scrapers
 {
     internal class OLXScraper : IOLXScraper
     {
-        public async Task<List<RawOlxOffer>?> ScrapeOLX()
+        public async Task<List<RawOlxOffer>?> ScrapeOLXAsync()
         {
             HtmlWeb web = new HtmlWeb();
             HtmlDocument doc = await web.LoadFromWebAsync("https://www.olx.ua/uk/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/kiev/");

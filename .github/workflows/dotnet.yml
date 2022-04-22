@@ -31,10 +31,15 @@ jobs:
 
     - name: Checktest2
       run: |
-        cd Coverage
+        cd Tests
+        ls
+        cd FlatBot.Application.UnitTests
+        ls
 
     - name: Checktest3
       run: |
+        ls
+        cd Tests/FlatBot.Application.UnitTests/TestResults
         ls
 
 

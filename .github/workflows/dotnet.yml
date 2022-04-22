@@ -23,7 +23,13 @@ jobs:
     - name: Build
       run: dotnet build ./FlatBot.WebApi --no-restore
     - name: Test
-      run: dotnet test ./Tests/FlatBot.Application.UnitTests --collect:"XPlat Code Coverage" --results-directory:"Coverage" --no-build --verbosity normal
+      run: |
+        dotnet test ./Tests/FlatBot.Application.UnitTests --collect:"XPlat Code Coverage" --no-build --verbosity normal
+        cd Tests/FlatBot.Application.UnitTests
+        ls
+        cd Tests/FlatBot.Application.UnitTests/TestResults
+        ls
+
 
     - name: Checktest
       run: |
@@ -39,7 +45,7 @@ jobs:
     - name: Checktest3
       run: |
         ls
-        cd Tests/FlatBot.Application.UnitTests/TestResults
+        cd Tests/FlatBot.Application.UnitTests
         ls
 
 

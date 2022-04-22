@@ -26,13 +26,16 @@ jobs:
       run: dotnet test ./Tests/FlatBot.Application.UnitTests --collect:"XPlat Code Coverage" --results-directory:"Coverage" --no-build --verbosity normal
 
     - name: Checktest
-      run: ls
+      run: |
+        ls
 
-      - name: Checktest2
-      run: cd Coverage
+    - name: Checktest2
+      run: |
+        cd Coverage
 
-      - name: Checktest3
-      run: ls
+    - name: Checktest3
+      run: |
+        ls
 
 
     - name: ReportGenerator

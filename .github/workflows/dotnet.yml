@@ -23,7 +23,7 @@ jobs:
         run: dotnet build ./FlatBot.WebApi --no-restore
       - name: Test
         run: |
-          dotnet test ./Tests/FlatBot.Application.UnitTests --collect:"XPlat Code Coverage" --no-build --verbosity normal
+          dotnet test ./Tests/FlatBot.Application.UnitTests --collect:"XPlat Code Coverage"
           echo ::set-output name=exit_code::$?
           cd Tests/FlatBot.Application.UnitTests
           ls

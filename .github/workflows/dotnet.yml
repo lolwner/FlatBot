@@ -31,7 +31,7 @@ jobs:
       - name: Test condition
         if: steps.build.outputs.exit_code == 0
         run: |
-          cd Tests/FlatBot.Application.UnitTests/TestResults
+          cd Tests/FlatBot.Application.UnitTests
           ls
 
       - name: Checktest

@@ -75,14 +75,13 @@ jobs:
         with:
           name: CoverageReport # Artifact name
           path: coveragereport # Directory containing files to upload
-          
-      - name: Test Report
-        uses: |
-            dorny/test-reporter@v1
+      - name: Check trx folder
+        run: |
             ls
             cd /Coverage
-            ls 
-            
+            ls  
+      - name: Test Report
+        uses: dorny/test-reporter@v1
         if: success() || failure()    # run this step even if previous step failed
         with:
           name: TRX test           # Name of the check run which will be created

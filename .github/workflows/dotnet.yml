@@ -23,7 +23,7 @@ jobs:
         run: dotnet build ./FlatBot.WebApi --no-restore
       - name: Test
         run: |
-          dotnet test ./Tests/FlatBot.Application.UnitTests --collect:"XPlat Code Coverage"
+          dotnet test ./Tests/FlatBot.Application.UnitTests --collect:"XPlat Code Coverage" --logger "trx;LogFileName=testResults.trx"
           echo ::set-output name=exit_code::$?
           cd Tests/FlatBot.Application.UnitTests
           ls
@@ -85,5 +85,5 @@ jobs:
         if: success() || failure()    # run this step even if previous step failed
         with:
           name: TRX test           # Name of the check run which will be created
-          path: ./Coverage/*.trx    # Path to test results
+          path: Tests/FlatBot.Application.UnitTests/TestResults/testResults.trx    # Path to test results
           reporter: dotnet-trx        # Format of test results

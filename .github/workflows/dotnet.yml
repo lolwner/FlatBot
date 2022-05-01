@@ -75,15 +75,11 @@ jobs:
         with:
           name: CoverageReport # Artifact name
           path: coveragereport # Directory containing files to upload
-      - name: Check trx folder
-        run: |
-            ls
-            cd /Coverage
-            ls  
+      
       - name: Test Report
         uses: dorny/test-reporter@v1
         if: success() || failure()    # run this step even if previous step failed
         with:
-          name: TRX test           # Name of the check run which will be created
+          name: Test Report (trx)           # Name of the check run which will be created
           path: Tests/FlatBot.Application.UnitTests/TestResults/testResults.trx    # Path to test results
           reporter: dotnet-trx        # Format of test results

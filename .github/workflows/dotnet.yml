@@ -81,5 +81,5 @@ jobs:
         if: success() || failure()    # run this step even if previous step failed
         with:
           name: TRX test           # Name of the check run which will be created
-          path: Coverage/*.trx    # Path to test results
+          path: ./Coverage/*.trx    # Path to test results
           reporter: dotnet-trx        # Format of test results

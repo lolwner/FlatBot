@@ -77,11 +77,12 @@ jobs:
           path: coveragereport # Directory containing files to upload
           
       - name: Test Report
-        uses: dorny/test-reporter@v1
-        run: |
+        uses: |
+            dorny/test-reporter@v1
             ls
             cd /Coverage
-            ls  
+            ls 
+            
         if: success() || failure()    # run this step even if previous step failed
         with:
           name: TRX test           # Name of the check run which will be created

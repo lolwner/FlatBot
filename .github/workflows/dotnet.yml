@@ -56,7 +56,7 @@ jobs:
         with:
           reports: "Tests/FlatBot.Application.UnitTests/TestResults/*/coverage.cobertura.xml" # REQUIRED # The coverage reports that should be parsed (separated by semicolon). Globbing is supported.
           targetdir: "coveragereport" # REQUIRED # The directory where the generated report should be saved.
-          reporttypes: "MarkdownSummary" # The output formats and scope (separated by semicolon) Values: Badges, Clover, Cobertura, CsvSummary, Html, Html_Dark, Html_Light, HtmlChart, HtmlInline, HtmlInline_AzurePipelines, HtmlInline_AzurePipelines_Dark, HtmlInline_AzurePipelines_Light, HtmlSummary, JsonSummary, Latex, LatexSummary, lcov, MarkdownSummary, MHtml, PngChart, SonarQube, TeamCitySummary, TextSummary, Xml, XmlSummary
+          reporttypes: "HtmlInline;Cobertura" # The output formats and scope (separated by semicolon) Values: Badges, Clover, Cobertura, CsvSummary, Html, Html_Dark, Html_Light, HtmlChart, HtmlInline, HtmlInline_AzurePipelines, HtmlInline_AzurePipelines_Dark, HtmlInline_AzurePipelines_Light, HtmlSummary, JsonSummary, Latex, LatexSummary, lcov, MarkdownSummary, MHtml, PngChart, SonarQube, TeamCitySummary, TextSummary, Xml, XmlSummary
           sourcedirs: "" # Optional directories which contain the corresponding source code (separated by semicolon). The source directories are used if coverage report contains classes without path information.
           historydir: "" # Optional directory for storing persistent coverage information. Can be used in future reports to show coverage evolution.
           plugins: "" # Optional plugin files for custom reports or custom history storage (separated by semicolon).
@@ -74,4 +74,12 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: CoverageReport # Artifact name
-          path: coveragereport/Summary.md # Directory containing files to upload
+          path: coveragereport # Directory containing files to upload
+          
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    # run this step even if previous step failed
+        with:
+          name: TRX test           # Name of the check run which will be created
+          path: Coverage/*.trx    # Path to test results
+          reporter: dotnet-trx        # Format of test results

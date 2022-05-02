@@ -26,30 +26,6 @@ jobs:
           dotnet test ./Tests/FlatBot.Application.UnitTests --collect:"XPlat Code Coverage" --logger "trx;LogFileName=testResults.trx"
           echo ::set-output name=exit_code::$?
           cd Tests/FlatBot.Application.UnitTests
-          ls
-
-      - name: Test condition
-        if: steps.build.outputs.exit_code == 0
-        run: |
-          cd Tests/FlatBot.Application.UnitTests/TestResults
-          ls
-
-      - name: Checktest
-        run: |
-          ls
-
-      - name: Checktest2
-        run: |
-          cd Tests
-          ls
-          cd FlatBot.Application.UnitTests
-          ls
-
-      - name: Checktest3
-        run: |
-          ls
-          cd Tests/FlatBot.Application.UnitTests
-          ls
 
       - name: ReportGenerator
         uses: danielpalme/ReportGenerator-GitHub-Action@5.1.4

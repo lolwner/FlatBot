@@ -1,35 +1,30 @@
 using FlatBot.Application;
+using FlatBot.Application.Services;
 using FlatBot.Infrastructure;
 using FlatBot.Persistance;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Identity.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
-
-// Add services to the container.
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.MapGet("/CheckWebHealth", () => "I`m ok");
+app.MapGet("/CheckMongoHealth", async (IHealthService healthService) =>
+    await healthService.CheckHealthAsync() ? Results.Ok("I`m ok") : Results.BadRequest("I`m not ok(("));
+
+app.MapGet("/Olx", async (IOLXService iOLXService) =>
+    await iOLXService.GetOLXData());
+
+
 if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Docker")
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    //app.UseSwaggerUI(c =>
-    //        {
-    //            c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Supplement V1");
-    //        });
 }
 else
 {
@@ -37,10 +32,5 @@ else
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.MapControllers();
 
 app.Run();

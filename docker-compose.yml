@@ -10,7 +10,7 @@ services:
       - ${WEBAPP_STORAGE_HOME}/site:/data/db
       #- ./data:/data/db
     ports:
-      - "27017:27017"
+      - "27018:27017"
 
   flatbot.webapi:  
     image: ${DOCKER_REGISTRY-}flatbotwebapi

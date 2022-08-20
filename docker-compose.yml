@@ -6,9 +6,7 @@ services:
     container_name: mongo
     image: mongo
     restart: always
-    volumes:
-      - ${WEBAPP_STORAGE_HOME}/site:/data/db
-      #- ./data:/data/db
+    
     ports:
       - "27018:27017"
 

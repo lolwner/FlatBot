@@ -16,6 +16,12 @@ namespace FlatBot.Persistance.Repositories
 
             _database = mongoClient.GetDatabase(
                 bookStoreDatabaseSettings.Value.DBName);
+
+            if (!_database.ListCollections().Any())
+            {
+                _database.CreateCollection(bookStoreDatabaseSettings.Value.Collection);
+            }
+
         }
 
         public async Task<bool> CheckHealthAsync()

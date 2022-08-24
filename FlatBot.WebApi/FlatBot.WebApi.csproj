@@ -25,4 +25,8 @@
     <ProjectReference Include="..\FlatBot.Persistance\FlatBot.Persistance.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
 </Project>

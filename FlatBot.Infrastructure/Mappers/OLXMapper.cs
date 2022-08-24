@@ -34,7 +34,7 @@ namespace FlatBot.Infrastructure.Mappers
 
                 var priceNoSpaces = string.Concat(rawOffer.Price.Where(c => !char.IsWhiteSpace(c)));
                 var priceNumber = Regex.Match(priceNoSpaces, @"\d+").Value;
-                var priceSuccess = double.TryParse(priceNumber, out double price);
+                var priceSuccess = decimal.TryParse(priceNumber, out decimal price);
 
                 if (priceSuccess)
                 {

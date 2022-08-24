@@ -6,7 +6,7 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddApplicationServices();
+builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddInfrastructureServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
@@ -21,6 +21,7 @@ builder.Logging.AddSerilog(logger);
 
 var app = builder.Build();
 
+app.MapGet("/", (ICitiesManagementService service) => service.TestFunc());
 app.MapGet("/CheckWebHealth", () => "I`m ok");
 app.MapGet("/CheckMongoHealth", async (IHealthService healthService) =>
     await healthService.CheckHealthAsync() ? Results.Ok("I`m ok") : Results.BadRequest("I`m not ok(("));

@@ -16,7 +16,7 @@ namespace FlatBot.Application.UnitTests.Mocks
                     Id = "1",
                     Image = "ImgSrc1",
                     Link =  "Link1",
-                    Price = 1.0,
+                    Price = 1,
                     UTCDate = DateTime.UtcNow
                 },
                 new OlxOfferEntity()
@@ -27,7 +27,7 @@ namespace FlatBot.Application.UnitTests.Mocks
                     Id = "2",
                     Image = "ImgSrc2",
                     Link =  "Link2",
-                    Price = 1.0,
+                    Price = 1,
                     UTCDate = DateTime.UtcNow
                 }
             };
@@ -39,16 +39,6 @@ namespace FlatBot.Application.UnitTests.Mocks
             repository.Setup(x => x.GetAsync()).ReturnsAsync(data);
 
             return repository;
-        }
-
-        public static OlxOfferEntity GetSingleData()
-        {
-            return data.FirstOrDefault();
-        }
-
-        public static List<OlxOfferEntity> GetData()
-        {
-            return data;
         }
     }
 }

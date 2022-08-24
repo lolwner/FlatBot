@@ -2,7 +2,7 @@
 {
     public interface ICitiesManagementService
     {
-        public void AddCity(string city);
+        public void TestFunc();
         public void AddSourceToCity(string city, int source);
         public void AddSourceToCity(string city, List<int> source);
         public void AddCitiesToSource(int source, List<string> cities);

@@ -7,7 +7,7 @@ namespace FlatBot.Infrastructure.Scrapers
     internal class OLXScraper : IOLXScraper
     {
         //"https://www.olx.ua/uk/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/kiev/"
-        public async Task<List<RawOlxOffer>?> ScrapeOLXAsync(string link)
+        public async Task<List<RawOlxOffer>> ScrapeOLXAsync(string link)
         {
             link = "https://www.olx.ua/uk/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/kiev/";
             //TODO: link check

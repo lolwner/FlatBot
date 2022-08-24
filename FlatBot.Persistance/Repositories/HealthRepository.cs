@@ -32,7 +32,7 @@ namespace FlatBot.Persistance.Repositories
 
                 return pingResult.Names.Contains("ok");
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
                 return false;
             }

@@ -26,7 +26,7 @@ namespace FlatBot.Infrastructure.Services
         public async Task<List<OlxOfferEntity>> GetOLXData(OlxSearchParameters olxSearchParameters)
         {
             OLXLinkBuilderService a = new OLXLinkBuilderService();
-            a.GetOLXLink(new OlxSearchParameters());
+            a.GetOLXLink(olxSearchParameters);
             _logger.LogInformation("test");
             //TODO: add link builder
             var data = await _oLXScraper.ScrapeOLXAsync("");

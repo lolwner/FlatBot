@@ -25,7 +25,7 @@ namespace FlatBot.Persistance.Repositories
         public async Task<List<OlxOfferEntity>> GetAsync() =>
             await _booksCollection.Find(_ => true).ToListAsync();
 
-        public async Task<OlxOfferEntity?> GetAsync(string id) =>
+        public async Task<OlxOfferEntity> GetAsync(string id) =>
             await _booksCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
         public async Task CreateAsync(OlxOfferEntity newBook) =>

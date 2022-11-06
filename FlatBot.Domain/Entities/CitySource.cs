@@ -1,9 +1,14 @@
-﻿namespace FlatBot.Domain.Entities
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+
+namespace FlatBot.Domain.Entities
 {
     public class CitySource
     {
-        public Guid CityId { get; set; }
-        public string City { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string CityId { get; set; }
+        public string CityName { get; set; }
+        public Country Country { get; set; }
         public List<int> Sources { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace FlatBot.Persistance
             //services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IOlxRepository, OlxRepository>();
             services.AddScoped<IHealthRepository, HealthRepository>();
+            services.AddScoped<ICitiesManagementRepository, CitiesManagementRepository>();
 
             //return services;
         }

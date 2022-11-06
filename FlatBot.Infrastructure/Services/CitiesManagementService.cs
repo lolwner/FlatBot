@@ -1,20 +1,34 @@
-﻿using FlatBot.Application.Services;
+﻿using FlatBot.Application.Persistance;
+using FlatBot.Application.Services;
+using FlatBot.Domain.Entities;
 using FlatBot.Infrastructure.Models;
 using Newtonsoft.Json;
 using System.Globalization;
-using System.Security.Cryptography.X509Certificates;
 
 namespace FlatBot.Infrastructure.Services
 {
     public class CitiesManagementService : ICitiesManagementService
     {
-        public CitiesManagementService()
+        private readonly ICitiesManagementRepository _citiesManagementRepository;
+        public CitiesManagementService(ICitiesManagementRepository citiesManagementRepository)
         {
+            _citiesManagementRepository = citiesManagementRepository;
         }
 
-        public void AddCitiesToSource(int source, List<string> cities)
+        public async Task AddCitiesToSourceAsync(int source, List<string> cities)
         {
-            throw new NotImplementedException();
+            await _citiesManagementRepository.AddCitiesToSourceAsync(source, cities);
+        }
+
+        public void AddCity(string city, string country)
+        {
+            var newCity = new CitySource
+            {
+                CityName = city,
+                Country = new Country { CountryName = country }
+            };
+
+            _citiesManagementRepository.AddCity(newCity);
         }
 
         public void AddSourceToCity(string city, int source)
@@ -44,18 +58,7 @@ namespace FlatBot.Infrastructure.Services
 
         public void TestFunc()
         {
-            var countries = CultureInfo.GetCultures(CultureTypes.SpecificCultures).ToList();
-            var cities = GetCities();
-        }
-
-        private List<CityViewModel> GetCities()
-        {
-            using (StreamReader r = new StreamReader("Resources/cities.json"))
-            {
-                string json = r.ReadToEnd();
-                var items = JsonConvert.DeserializeObject<List<CityViewModel>>(json);
-                return items;
-            }
+            AddCity("Kyiv", "Ukraine");
         }
     }
 }

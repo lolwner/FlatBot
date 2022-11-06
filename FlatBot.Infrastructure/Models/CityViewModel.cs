@@ -2,7 +2,7 @@
 
 namespace FlatBot.Infrastructure.Models
 {
-    public class CityViewModel
+    public class City
     {
         [JsonProperty]
         public string Country { get; set; }

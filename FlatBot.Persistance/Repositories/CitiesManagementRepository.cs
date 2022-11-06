@@ -1,7 +1,9 @@
 ﻿using FlatBot.Application.Persistance;
 using FlatBot.Domain.Entities;
 using Microsoft.Extensions.Options;
+using Microsoft.VisualBasic;
 using MongoDB.Driver;
+using System.Numerics;
 
 namespace FlatBot.Persistance.Repositories
 {
@@ -21,12 +23,16 @@ namespace FlatBot.Persistance.Repositories
                 bookStoreDatabaseSettings.Value.Collection);
         }
 
-        public Task AddCity(string city)
+        public async Task AddCity(CitySource city)
         {
-            return _cityCollection.InsertOneAsync(new CitySource
+            try
             {
-                City = city
-            });
+                await _cityCollection.InsertOneAsync(city);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         public void AddSourceToCity(string city, int source)
@@ -34,7 +40,16 @@ namespace FlatBot.Persistance.Repositories
             var update = Builders<CitySource>.Update
                 .Set(m => m.Sources[-1], source);
 
-            _cityCollection.FindOneAndUpdate(x => string.Equals(city, x.City), update);
+            _cityCollection.FindOneAndUpdate(x => string.Equals(city, x.CityName), update);
+        }
+
+        public async Task AddCitiesToSourceAsync(int source, List<string> cityIds)
+        {
+            var citiess = await _cityCollection.Find(x => cityIds.Contains(x.CityId)).ToListAsync();
+
+            citiess.ForEach(x => x.Sources.Add(source));
+            UpdateDefinition<CitySource> updateDefinition = Builders<CitySource>.Update.Set(x => x.Sources[-1], source);
+            _cityCollection.UpdateMany(x => cityIds.Contains(x.CityId), updateDefinition);
         }
     }
 }

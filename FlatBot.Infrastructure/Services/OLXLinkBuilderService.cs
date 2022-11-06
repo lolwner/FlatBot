@@ -17,6 +17,8 @@ namespace FlatBot.Infrastructure.Services
 
         public void GetOLXLink(OlxSearchParameters olxSearchParameters)
         {
+            const string link = "https://www.olx.ua/uk/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/kiev/";
+            const string linkBase = "https://www.olx.ua/uk/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/";
             var conversion = new Conversion();
             var a = "Київ";
             var b = "Киев";
@@ -24,9 +26,6 @@ namespace FlatBot.Infrastructure.Services
             var latin2 = b.ToUkrainianLatin();
             var latin3 = a.ToRussianLatin();
             var latin4 = b.ToRussianLatin();
-            var link = "https://www.olx.ua/uk/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/kiev/";
-
-
         }
     }
 }

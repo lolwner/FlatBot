@@ -1,5 +1,4 @@
 ﻿using FlatBot.Application.Persistance;
-using FlatBot.Persistance.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

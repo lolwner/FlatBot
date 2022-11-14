@@ -8,7 +8,7 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "flatbot.webapi": "StartDebugging",
-        "mongo": "StartWithoutDebugging"
+        //"mongo": "StartWithoutDebugging"
       }
     }
   }

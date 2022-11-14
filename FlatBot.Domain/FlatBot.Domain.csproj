@@ -7,8 +7,4 @@
     <Configurations>Debug;Release;Docker</Configurations>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MongoDB.Bson" Version="2.15.0" />
-  </ItemGroup>
-
 </Project>

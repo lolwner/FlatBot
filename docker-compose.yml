@@ -10,6 +10,8 @@ services:
     ports:
       - "27017:27017"
     command: ["mongod", "--port", "27017"]
+    volumes:
+      - './data:/data/db'
 
   flatbot.webapi:  
     image: ${DOCKER_REGISTRY-}flatbotwebapi
@@ -18,14 +20,11 @@ services:
       dockerfile: FlatBot.WebApi/Dockerfile
     ports:
       - "80"
-      # - "5001:80"
       - "443"
     depends_on:
       - mongo
     volumes:
       - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
       - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/
-      # - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
-      # - ${HOME}/.aspnet/https:/root/.aspnet/https/
     links:
       - mongo

@@ -1,6 +1,14 @@
 version: '3.8'
 
 services:
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+
+    ports:
+      - "27017:27017"
+    command: ["mongod", "--port", "27017"]
   flatbot.webapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -8,6 +16,10 @@ services:
     ports:
       - "80"
       - "443"
+    depends_on:
+      - mongo
     volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https
+    links:
+      - mongo

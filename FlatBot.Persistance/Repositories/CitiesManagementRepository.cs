@@ -3,6 +3,7 @@ using FlatBot.Domain.Entities;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualBasic;
 using MongoDB.Driver;
+using System.ComponentModel;
 using System.Numerics;
 
 namespace FlatBot.Persistance.Repositories
@@ -20,7 +21,7 @@ namespace FlatBot.Persistance.Repositories
                 bookStoreDatabaseSettings.Value.DBName);
 
             _cityCollection = mongoDatabase.GetCollection<CitySource>(
-                bookStoreDatabaseSettings.Value.Collection);
+                "cities");
         }
 
         public async Task AddCity(CitySource city)
@@ -35,6 +36,13 @@ namespace FlatBot.Persistance.Repositories
             }
         }
 
+        public async Task<List<CitySource>> GetCities()
+        {
+            var res = await _cityCollection.Find(_ => true).ToListAsync();
+
+            return res;
+        }
+
         public void AddSourceToCity(string city, int source)
         {
             var update = Builders<CitySource>.Update
@@ -45,11 +53,11 @@ namespace FlatBot.Persistance.Repositories
 
         public async Task AddCitiesToSourceAsync(int source, List<string> cityIds)
         {
-            var citiess = await _cityCollection.Find(x => cityIds.Contains(x.CityId)).ToListAsync();
+            var citiess = await _cityCollection.Find(x => cityIds.Contains(x.Id)).ToListAsync();
 
             citiess.ForEach(x => x.Sources.Add(source));
             UpdateDefinition<CitySource> updateDefinition = Builders<CitySource>.Update.Set(x => x.Sources[-1], source);
-            _cityCollection.UpdateMany(x => cityIds.Contains(x.CityId), updateDefinition);
+            _cityCollection.UpdateMany(x => cityIds.Contains(x.Id), updateDefinition);
         }
     }
 }

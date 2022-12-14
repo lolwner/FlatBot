@@ -22,6 +22,7 @@ builder.Logging.AddSerilog(logger);
 var app = builder.Build();
 
 app.MapGet("/", (ICitiesManagementService service) => service.TestFunc());
+app.MapGet("/getCitiesTest", (ICitiesManagementService service) => service.GetCities());
 app.MapGet("/CheckWebHealth", () => "I`m ok");
 app.MapGet("/CheckMongoHealth", async (IHealthService healthService) =>
     await healthService.CheckHealthAsync() ? Results.Ok("I`m ok") : Results.BadRequest("I`m not ok(("));

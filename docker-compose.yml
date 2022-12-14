@@ -8,17 +8,14 @@ services:
     restart: always
     
     ports:
-      - "27018:27017"
+      - "27017:27017"
+    command: ["mongod", "--port", "27017"]
 
   flatbot.webapi:  
     image: ${DOCKER_REGISTRY-}flatbotwebapi
     build:
       context: .
       dockerfile: FlatBot.WebApi/Dockerfile
-    environment:
-      ASPNETCORE_URLS: https://+:443;http://+:80
-      ASPNETCORE_HTTPS_PORT: 8081
-      ASPNETCORE_ENVIRONMENT: "Development"
     ports:
       - "80"
       # - "5001:80"

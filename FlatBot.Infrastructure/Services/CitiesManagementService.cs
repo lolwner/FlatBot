@@ -2,6 +2,7 @@
 using FlatBot.Application.Services;
 using FlatBot.Domain.Entities;
 using FlatBot.Infrastructure.Models;
+using MongoDB.Bson;
 using Newtonsoft.Json;
 using System.Globalization;
 
@@ -24,6 +25,7 @@ namespace FlatBot.Infrastructure.Services
         {
             var newCity = new CitySource
             {
+                Id = ObjectId.GenerateNewId().ToString(),
                 CityName = city,
                 Country = new Country { CountryName = country }
             };
@@ -39,6 +41,11 @@ namespace FlatBot.Infrastructure.Services
         public void AddSourceToCity(string city, List<int> source)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<List<CitySource>> GetCities()
+        {
+            return await _citiesManagementRepository.GetCities();
         }
 
         public void RemoveCity(string city)

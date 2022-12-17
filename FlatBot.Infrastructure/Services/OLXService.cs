@@ -13,24 +13,27 @@ namespace FlatBot.Infrastructure.Services
         private readonly IOlxRepository _olxRepository;
         private readonly IOLXScraper _oLXScraper;
         private readonly IOLXMapper _oLXMapper;
+        private readonly IOLXLinkBuilderService _oLXLinkBuilderService;
         private readonly ILogger<OLXService> _logger;
 
-        public OLXService(IOlxRepository olxRepository, IOLXScraper oLXScraper, IOLXMapper oLXMapper, ILogger<OLXService> logger)
+        public OLXService(IOlxRepository olxRepository,
+            IOLXScraper oLXScraper,
+            IOLXMapper oLXMapper, IOLXLinkBuilderService oLXLinkBuilderService,
+            ILogger<OLXService> logger)
         {
             _olxRepository = olxRepository;
             _oLXScraper = oLXScraper;
             _oLXMapper = oLXMapper;
+            _oLXLinkBuilderService = oLXLinkBuilderService;
             _logger = logger;
         }
 
         public async Task<List<OlxOfferEntity>> GetOLXData(OlxSearchParameters olxSearchParameters)
         {
-            OLXLinkBuilderService a = new OLXLinkBuilderService();
-            a.GetOLXLink(olxSearchParameters);
-            _logger.LogInformation("test");
-            //TODO: add link builder
-            var data = await _oLXScraper.ScrapeOLXAsync("");
-            var todayOffersList = data?.Where(x => x.Date.Contains(ContentConstants.OLXTodayString)).ToList();
+            string link = _oLXLinkBuilderService.GetOLXLink(olxSearchParameters);
+
+            List<RawOlxOffer> data = await _oLXScraper.ScrapeOLXAsync(link);
+            List<RawOlxOffer> todayOffersList = data?.Where(x => x.Date.Contains(ContentConstants.OLXTodayString)).ToList();
 
             if (todayOffersList is not null)
             {

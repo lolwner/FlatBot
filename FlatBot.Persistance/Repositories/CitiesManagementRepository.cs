@@ -26,14 +26,7 @@ namespace FlatBot.Persistance.Repositories
 
         public async Task AddCity(CitySource city)
         {
-            try
-            {
-                await _cityCollection.InsertOneAsync(city);
-            }
-            catch (Exception)
-            {
-
-            }
+            await _cityCollection.InsertOneAsync(city);
         }
 
         public async Task<List<CitySource>> GetCities()

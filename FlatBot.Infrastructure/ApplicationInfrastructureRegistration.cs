@@ -16,6 +16,8 @@ namespace FlatBot.Infrastructure
             services.AddTransient<IOLXMapper, OLXMapper>();
 
             services.AddTransient<IOLXService, OLXService>();
+            services.AddTransient<IOLXLinkBuilderService, OLXLinkBuilderService>();
+
             services.AddTransient<IHealthService, HealthService>();
             services.AddTransient<ICitiesManagementService, CitiesManagementService>();
 

@@ -28,11 +28,12 @@ namespace FlatBot.Infrastructure.Services
             _logger = logger;
         }
 
-        public async Task<List<OlxOfferEntity>> GetOLXData(OlxSearchParameters olxSearchParameters)
+        public async Task<List<OlxOfferEntity>> FetchOLXData(OlxSearchParameters olxSearchParameters)
         {
             string link = _oLXLinkBuilderService.GetOLXLink(olxSearchParameters);
 
             List<RawOlxOffer> data = await _oLXScraper.ScrapeOLXAsync(link);
+            _logger.LogInformation("Received {0} entries", data.Count);
             List<RawOlxOffer> todayOffersList = data?.Where(x => x.Date.Contains(ContentConstants.OLXTodayString)).ToList();
 
             if (todayOffersList is not null)
@@ -44,6 +45,13 @@ namespace FlatBot.Infrastructure.Services
             }
 
             return null;
+        }
+
+        public async Task<List<OlxOfferEntity>> GetOLXData()
+        {
+            var res = await _olxRepository.GetAsync();
+
+            return res;
         }
     }
 }

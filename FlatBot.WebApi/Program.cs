@@ -28,13 +28,14 @@ app.MapGet("/CheckMongoHealth", async (IHealthService healthService) =>
     await healthService.CheckHealthAsync() ? Results.Ok("I`m ok") : Results.BadRequest("I`m not ok(("));
 
 app.MapGet("/Olx", async (IOLXService iOLXService) =>
-    await iOLXService.GetOLXData(new FlatBot.Domain.Entities.OlxSearchParameters
+    await iOLXService.FetchOLXData(new FlatBot.Domain.Entities.OlxSearchParameters
     {
         City = "Киев",
         MinPrice = 13000,
         MaxPrice = 14000
     }));
 
+app.MapGet("/GetOlxData", async (IOLXService iOLXService) => await iOLXService.GetOLXData());
 
 if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Docker")
 {

@@ -4,6 +4,7 @@ namespace FlatBot.Application.Services
 {
     public interface IOLXService
     {
-        Task<List<OlxOfferEntity>> GetOLXData(OlxSearchParameters olxSearchParameters);
+        Task<List<OlxOfferEntity>> FetchOLXData(OlxSearchParameters olxSearchParameters);
+        Task<List<OlxOfferEntity>> GetOLXData();
     }
 }

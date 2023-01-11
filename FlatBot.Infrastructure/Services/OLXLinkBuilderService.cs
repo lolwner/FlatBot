@@ -25,7 +25,7 @@ namespace FlatBot.Infrastructure.Services
             StringBuilder baseLink = new StringBuilder(domain);
 
             baseLink.Append(searchStringBase);
-            //TODO: add translation service
+            //TODO: add translation service for cases of unknown language
             baseLink.Append(olxSearchParameters.City.ToRussianLatin());
 
             //TODO: add currency to search

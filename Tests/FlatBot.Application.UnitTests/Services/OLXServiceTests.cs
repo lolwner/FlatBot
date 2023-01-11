@@ -24,21 +24,11 @@ namespace FlatBot.Application.UnitTests.Services
 
         }
 
-        //[Fact]
-        //public async Task ShouldReturnData()
-        //{
-        //    _mockOLXScraper.Setup(x => x.ScrapeOLXAsync()).ReturnsAsync(OLXScraperHelper.GetData());
-        //    bool res = false;
+        [Fact]
+        public void GetOLXDataShouldReturnData()
+        {
 
-        //    _mockOLXMapper.Setup(h => h.Map(It.IsAny<List<RawOlxOffer>>()))
-        //        .Callback<List<RawOlxOffer>>(r => res = r.Any());
-
-        //    var service = new OLXService(_mockOlxRepository.Object,
-        //        _mockOLXScraper.Object, _mockOLXMapper.Object);
-
-        //    await service.GetOLXData();
-
-        //    Assert.True(res);
-        //}
+            Assert.NotNull()
+        }
     }
 }

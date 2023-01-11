@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'FlatBot.UI'`, () => {
+  it(`should have as title 'FlatBot.ManagementUI'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('FlatBot.UI');
+    expect(app.title).toEqual('FlatBot.ManagementUI');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('FlatBot.UI app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('FlatBot.ManagementUI app is running!');
   });
 });

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "FlatBot.UI": {
+    "FlatBot.ManagementUI": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/flat-bot.ui",
+            "outputPath": "dist/flat-bot.management-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "FlatBot.UI:build:production"
+              "browserTarget": "FlatBot.ManagementUI:build:production"
             },
             "development": {
-              "browserTarget": "FlatBot.UI:build:development"
+              "browserTarget": "FlatBot.ManagementUI:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "FlatBot.UI:build"
+            "browserTarget": "FlatBot.ManagementUI:build"
           }
         },
         "test": {

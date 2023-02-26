@@ -44,6 +44,8 @@ if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Docke
 }
 else
 {
+    app.UseSwagger();
+    app.UseSwaggerUI();
     app.UseHsts();
 }
 

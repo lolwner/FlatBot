@@ -9,10 +9,8 @@ namespace FlatBot.Infrastructure.Scrapers
         public async Task<List<RawOlxOffer>> ScrapeOLXAsync(string link)
         {
             link = "https://www.olx.ua/uk/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/kiev/";
-            //TODO: link check
             HtmlWeb web = new HtmlWeb();
             HtmlDocument doc = await web.LoadFromWebAsync(link);
-
             var offersNode = doc.DocumentNode.SelectNodes("//table[@class='fixed offers breakword offers--top redesigned']/tbody").FirstOrDefault();
 
             if (offersNode is null)

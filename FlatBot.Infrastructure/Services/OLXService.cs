@@ -31,6 +31,12 @@ namespace FlatBot.Infrastructure.Services
         public async Task<List<OlxOfferEntity>> FetchOLXData(OlxSearchParameters olxSearchParameters)
         {
             string link = _oLXLinkBuilderService.GetOLXLink(olxSearchParameters);
+            
+            if (!Uri.IsWellFormedUriString(link, UriKind.Absolute))
+            {
+                _logger.LogError("Link is not in correct format");
+                return null;
+            }
 
             List<RawOlxOffer> data = await _oLXScraper.ScrapeOLXAsync(link);
             _logger.LogInformation("Received {0} entries", data.Count);

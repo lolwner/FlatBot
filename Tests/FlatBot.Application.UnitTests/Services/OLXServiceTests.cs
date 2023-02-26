@@ -28,7 +28,7 @@ namespace FlatBot.Application.UnitTests.Services
         public void GetOLXDataShouldReturnData()
         {
 
-            Assert.NotNull()
+            // Assert.NotNull()
         }
     }
 }

@@ -65,7 +65,7 @@ namespace FlatBot.Infrastructure.Services
 
         public void TestFunc()
         {
-            AddCity("Kyiv", "Ukraine");
+            // AddCity("Kyiv", "Ukraine");
         }
     }
 }

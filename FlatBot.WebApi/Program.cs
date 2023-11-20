@@ -2,6 +2,7 @@
 using FlatBot.Application.Services;
 using FlatBot.Infrastructure;
 using FlatBot.Persistance;
+using FlatBot.WebApi.Endpoints;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,9 +24,7 @@ var app = builder.Build();
 
 app.MapGet("/", (ICitiesManagementService service) => service.TestFunc());
 app.MapGet("/getCitiesTest", (ICitiesManagementService service) => service.GetCities());
-app.MapGet("/CheckWebHealth", () => "I`m ok");
-app.MapGet("/CheckMongoHealth", async (IHealthService healthService) =>
-    await healthService.CheckHealthAsync() ? Results.Ok("I`m ok") : Results.BadRequest("I`m not ok(("));
+app.MapHealthCheckEndpoints();
 
 app.MapGet("/Olx", async (IOLXService iOLXService) =>
     await iOLXService.FetchOLXData(new FlatBot.Domain.Entities.OlxSearchParameters
